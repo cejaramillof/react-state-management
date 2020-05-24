@@ -4,7 +4,7 @@ import Counter from './Counter';
 function App() {
   return (
     <>
-      <Counter />
+      <Counter step={3} />
     </>
   );
 }
