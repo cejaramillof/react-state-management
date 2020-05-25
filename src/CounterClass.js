@@ -20,7 +20,7 @@ const decrement = (state, props) => {
 
 document.title = 'Hello';
 
-class Counter extends Component {
+class CounterClass extends Component {
   constructor(props) {
     super(props);
     // this.state = { count: 3 };
@@ -90,7 +90,7 @@ class Counter extends Component {
 
     return (
       <div className="Counter">
-        <p className="count">{count}</p>
+        <p className="count">CounterClass: {count}</p>
         <section className="controls">
           <button onClick={this.increment}>Increment</button>
           <button onClick={this.decrement}>Decrement</button>
@@ -101,4 +101,4 @@ class Counter extends Component {
   }
 }
 
-export default Counter;
+export default CounterClass;

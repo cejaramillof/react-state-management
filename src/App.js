@@ -1,10 +1,13 @@
 import React from 'react';
-import Counter from './Counter';
+import CounterClass from './CounterClass';
+import CounterFunction from './CounterFunction';
 
 function App() {
   return (
     <>
-      <Counter step={3} />
+      <CounterFunction step={3} />
+      <hr />
+      <CounterClass step={3} />
     </>
   );
 }

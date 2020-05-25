@@ -25,6 +25,12 @@ The main job of react is to take your application state and turn it into DOM nod
 - You don't need to shove everything into your render method.
 - - Can segmentate creating functions with small parts
 - - Use sensible
+
+
+- `this.state` class propertie
+- `useState()` is a method
+
+
 ----
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
