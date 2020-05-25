@@ -1,30 +1,25 @@
-import React, { Component, useState } from 'react';
-
-const getStateFromLocalStorage = () => {
-  const storage = localStorage.getItem('counterState');
-  if (storage) return JSON.parse(storage);
-  return { count: 0 };
-}
-
-function storageInLocalStorage() {
-  localStorage.setItem('counterState', JSON.stringify(this.state))
-  console.log('after! ', this.state.count)
-  document.title = `Count: ${this.state.count}`;
-}
-
-const decrement = (state, props) => {
-  const { count } = state;
-  const { step } = props;
-  return { count: count - step }
-};
+import React, { useState, useEffect } from 'react';
 
 const dec = (count) => {
   // here dont have access to props
   return count - 1
 }
 
+const getStateFromLocalStorage = () => {
+  const storage = localStorage.getItem('counterFState');
+  if (storage) return JSON.parse(storage).count;
+  return 0;
+}
+
+const storageInLocalStorage = (count) => {
+  localStorage.setItem('counterFState', JSON.stringify({ count }))
+  console.log('after! ', count)
+  document.title = `${count}`;
+}
+
+
 const CounterFunction = ({ step }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(getStateFromLocalStorage());
 
   const increment = () => {
     setCount(count + 1);
@@ -40,8 +35,17 @@ const CounterFunction = ({ step }) => {
       if (count >= 0) return count; // need return a value, because here will merge all objects
       return count - step
     })
+    // dont have callback, like a this.state, but can use useEffect
   }
   const reset = () => setCount(0);
+
+  useEffect(() => {
+    storageInLocalStorage(count)
+  }, [count])
+
+  useEffect(() => {
+    document.title = `${count}`
+  }, [count]) // when you use empty array and send different props to the same component, this dont be mounted again
 
   return (
     <div className="Counter">
