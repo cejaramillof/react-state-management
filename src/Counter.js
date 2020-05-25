@@ -9,6 +9,7 @@ const getStateFromLocalStorage = () => {
 function storageInLocalStorage() {
   localStorage.setItem('counterState', JSON.stringify(this.state))
   console.log('after! ', this.state.count)
+  document.title = `Count: ${this.state.count}`;
 }
 
 const decrement = (state, props) => {
@@ -16,6 +17,8 @@ const decrement = (state, props) => {
   const { step } = props;
   return { count: count - step }
 };
+
+document.title = 'Hello';
 
 class Counter extends Component {
   constructor(props) {
