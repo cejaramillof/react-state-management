@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 
+const getStateFromLocalStorage = () => {
+  const storage = localStorage.getItem('counterState');
+  if (storage) return JSON.parse(storage);
+  return { count: 0 };
+}
+
+function storageInLocalStorage() {
+  localStorage.setItem('counterState', JSON.stringify(this.state))
+  console.log('after! ', this.state.count)
+}
+
 const decrement = (state, props) => {
   const { count } = state;
   const { step } = props;
@@ -9,9 +20,8 @@ const decrement = (state, props) => {
 class Counter extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      count: 3,
-    };
+    // this.state = { count: 3 };
+    this.state = getStateFromLocalStorage();
     this.increment = this.increment.bind(this);
   }
 
@@ -19,7 +29,8 @@ class Counter extends Component {
     console.log(this.state.count); // print 3, because setState() is Asynchronous
     this.setState({ count: this.state.count + 1 });
     console.log(this.state.count); // print 3, because setState() is Asynchronous
-    this.setState({ count: this.state.count + 3 }); // Like in object merge, there's duplicate keys, the last one wins
+    // this.setState({ count: this.state.count + 3 }, storageInLocalStorage.bind(this));
+    this.setState({ count: this.state.count + 3 }, storageInLocalStorage); // Like in object merge, there's duplicate keys, the last one wins
     console.log(this.state.count); // print 3, because setState() is Asynchronous // Queuing upstate changes
     /*
       when this function finish, count will be 6, because react:
@@ -37,7 +48,14 @@ class Counter extends Component {
     this.setState((state) => { return { count: state.count - 2 } });
     console.log(this.state.count); // print 3, because setState() is Asynchronous
     // this.setState(({ count }, { step }) => { return { count: count - step } });
-    this.setState(decrement, () => console.log('after! ', this.state.count)); // the second argument is a callback, to be executed after state has been updated
+    /*
+    this.setState(decrement, () => { // the second argument is a callback, to be executed after state has been updated
+      localStorage.setItem('counterState', JSON.stringify(this.state))
+      console.log('after! ', this.state.count)
+    });
+    */
+    this.setState(decrement, storageInLocalStorage)
+
     /*
     this.setState((state, props) => {
       const { count } = state;
