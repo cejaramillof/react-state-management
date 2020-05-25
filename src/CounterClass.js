@@ -85,6 +85,12 @@ class CounterClass extends Component {
     });
   }
 
+  componentDidUpdate() {
+    setTimeout(() => {
+      console.log(`Count didMount: ${this.state.count}`) // will print the last number, because is a reference
+    }, 3000);
+  }
+
   render() {
     const { count } = this.state;
 
