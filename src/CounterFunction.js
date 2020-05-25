@@ -17,9 +17,27 @@ const storageInLocalStorage = (count) => {
   document.title = `${count}`;
 }
 
+const useLocalStorage = (initialValue, key) => {
+  const get = () => {
+    const storage = localStorage.getItem(key);
+    console.log(storage);
+    if (storage) return JSON.parse(storage).value;
+    return initialValue;
+  }
+
+  const [value, setValue] = useState(get());
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify({ value }));
+  }, [value]);
+
+  return [value, setValue];
+};
+
 
 const CounterFunction = ({ step }) => {
-  const [count, setCount] = useState(getStateFromLocalStorage());
+  // const [count, setCount] = useState(getStateFromLocalStorage());
+  const [count, setCount] = useLocalStorage(0, 'counterFHState');
 
   const increment = () => {
     setCount(count + 1);
