@@ -13,6 +13,18 @@ The main job of react is to take your application state and turn it into DOM nod
 
 # There is no silver bullet
 
+## Patterns and anti-patterns
+- When we're working with props, we have proptypes. That's not the case with state
+- Don't duplicate data from props in state
+- Calculate what you can in render() method
+- Don't keep something in state if you dont use it for rendering.
+- - Like API Subscriptionn, are better of as custom private fields or variables in external modules
+- Don't use this.state for derivations of props (new values calculateds from props)
+- - Because if youre calculating on constructor, and reusing in other page, they dont will be re-calculated
+- - Don't do this. instead, derive computed properties directly from the props themselves. Because in each change of props, will be re-rendered
+- You don't need to shove everything into your render method.
+- - Can segmentate creating functions with small parts
+- - Use sensible
 ----
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
