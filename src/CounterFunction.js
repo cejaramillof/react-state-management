@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const dec = (count) => {
   // here dont have access to props
@@ -28,8 +28,11 @@ const useLocalStorage = (initialValue, key) => {
   const [value, setValue] = useState(get());
 
   useEffect(() => {
+    setTimeout(() => {
+      console.log(`Count TO: ${value}`) // this is not reference, like in a class component
+    }, 3000);
     localStorage.setItem(key, JSON.stringify({ value }));
-  }, [value]);
+  }, [value, key]);
 
   return [value, setValue];
 };
@@ -38,6 +41,16 @@ const useLocalStorage = (initialValue, key) => {
 const CounterFunction = ({ step }) => {
   // const [count, setCount] = useState(getStateFromLocalStorage());
   const [count, setCount] = useLocalStorage(0, 'counterFHState');
+  const countRef = useRef(); // {current: null}, can have primitives by value, objects by reference
+
+  let message = '';
+  console.log(countRef);
+  console.log(count);
+  if (countRef.current < count) message = 'Higher'
+  if (countRef.current > count) message = 'Lower';
+  console.log(message);
+
+  countRef.current = count;
 
   const increment = () => {
     setCount(count + 1);
@@ -69,6 +82,7 @@ const CounterFunction = ({ step }) => {
     <div className="Counter">
       <p className="count">CounterFunction: {count}</p>
       <section className="controls">
+        {message}
         <button onClick={increment}>Increment</button>
         <button onClick={decrement}>Decrement</button>
         <button onClick={reset}>Reset</button>
