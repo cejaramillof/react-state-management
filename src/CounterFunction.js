@@ -28,10 +28,12 @@ const useLocalStorage = (initialValue, key) => {
   const [value, setValue] = useState(get());
 
   useEffect(() => {
-    setTimeout(() => {
+    // setTimeout(() => {
+    const id = setInterval(() => {
       console.log(`Count TO: ${value}`) // this is not reference, like in a class component
     }, 3000);
     localStorage.setItem(key, JSON.stringify({ value }));
+    return () => clearInterval(id); //component didunmount
   }, [value, key]);
 
   return [value, setValue];
