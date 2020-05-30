@@ -1,6 +1,7 @@
 import React from 'react';
 import CounterClass from './CounterClass';
 import CounterFunction from './CounterFunction';
+import Application from './useReducer/Application';
 
 function App() {
   return (
@@ -8,6 +9,8 @@ function App() {
       <CounterFunction step={3} />
       <hr />
       <CounterClass step={3} />
+      <hr />
+      <Application />
     </>
   );
 }
