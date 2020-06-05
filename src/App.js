@@ -1,16 +1,27 @@
 import React from 'react';
 import CounterClass from './CounterClass';
 import CounterFunction from './CounterFunction';
-import Application from './useReducer/Application';
+import UseReducer from './useReducer/UseReducer';
+import UseState from './useReducer/UseState';
+import UseContext from './useReducer/UseContext';
+import { GrudgeProvider } from './useReducer/GrudgeContext';
 
 function App() {
   return (
     <>
+      { /*
       <CounterFunction step={3} />
       <hr />
       <CounterClass step={3} />
-      <hr />
-      <Application />
+      */}
+      <hr /> UseState
+      <UseState />
+      <hr /> UseReducer
+      <UseReducer />
+      <hr /> UseContext
+      <GrudgeProvider>
+        <UseContext />
+      </GrudgeProvider>
     </>
   );
 }
