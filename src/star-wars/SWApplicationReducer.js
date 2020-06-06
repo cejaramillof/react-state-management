@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import CharacterList from './CharacterList';
 import dummyData from './dummy-data';
 import endpoint from './endpoint';
@@ -35,7 +35,7 @@ const fetchReducer = (state, action) => {
 }
 
 const useFetch = url => {
-  const [state, dispatch] = React.useReducer(fetchReducer, initialState)
+  const [state, dispatch] = useReducer(fetchReducer, initialState)
 
   // cannot send async function to useEffect cuz they return promises
   useEffect(() => {
@@ -45,7 +45,7 @@ const useFetch = url => {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        dispatch({ type: 'RESPONSE_COMPLETE', payload: { response } });
+        dispatch({ type: 'RESPONSE_COMPLETE', payload: { response: data } });
       } catch (error) {
         dispatch({ type: 'ERROR', payload: error });
       }
@@ -71,10 +71,10 @@ const useFetch = url => {
   }, [])
   // useEffect will be runned in every change of state, wil empty array only will runned one time
 
-  return [response, loading, error];
+  return [state.result, state.loading, state.error];
 }
 
-const SWApplication = () => {
+const SWApplicationReducer = () => {
   // const [characters, setCharacters] = useState(dummyData);
   const [response, loading, error] = useFetch(endpoint + '/characters'); // can create second param to format data
   const characters = (response && response.characters) || [];
@@ -128,4 +128,4 @@ const SWApplication = () => {
   );
 };
 
-export default SWApplication;
+export default SWApplicationReducer;

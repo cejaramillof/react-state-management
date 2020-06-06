@@ -6,10 +6,16 @@ import UseState from './useReducer/UseState';
 import UseContext from './useReducer/UseContext';
 import { GrudgeProvider } from './useReducer/GrudgeContext';
 import SWApplication from './star-wars/SWApplication';
+import SWApplicationThunk from './star-wars/SWApplicationThunk';
+import SWApplicationReducer from './star-wars/SWApplicationReducer';
 
 function App() {
   return (
     <>
+      <SWApplicationThunk />
+      <hr />
+      <SWApplicationReducer />
+      <hr />
       <SWApplication />
       <hr />
       { /*

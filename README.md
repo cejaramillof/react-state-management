@@ -31,6 +31,17 @@ The main job of react is to take your application state and turn it into DOM nod
 - `useState()` is a method
 
 
+# Thunks
+Thunks is a function returned by another function.
+The major idea behind a thunk is that it its code to be executed later.
+
+```javascript
+function definitelyNotAThunk() {
+  return function aThunk() {
+    console.log('Hello, Im a Thunk.');
+  }
+}
+```
 ----
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
