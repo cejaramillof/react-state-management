@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useReducer, useCallback } from 'react';
 import CharacterList from './CharacterList';
+import CharacterView from './CharacterView';
 import dummyData from './dummy-data';
 import endpoint from './endpoint';
+import { Route } from 'react-router-dom';
 
 const initialState = {
   result: null,
@@ -85,8 +87,11 @@ const SWApplicationThunk = () => {
           }
           {error && <p>{error.message}</p>}
         </section>
+        <section className="CharacterView">
+          <Route path="/characters/:id" component={CharacterView} />
+        </section>
       </main>
-    </div>
+    </div >
   );
 };
 
