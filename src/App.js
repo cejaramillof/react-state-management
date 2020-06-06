@@ -8,10 +8,13 @@ import { GrudgeProvider } from './useReducer/GrudgeContext';
 import SWApplication from './star-wars/SWApplication';
 import SWApplicationThunk from './star-wars/SWApplicationThunk';
 import SWApplicationReducer from './star-wars/SWApplicationReducer';
+import UserSignup from './UserSignUp';
 
 function App() {
   return (
     <>
+      <UserSignup />
+      <hr />
       <SWApplicationThunk />
       <hr />
       <SWApplicationReducer />
