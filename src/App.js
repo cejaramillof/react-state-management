@@ -9,10 +9,16 @@ import SWApplication from './star-wars/SWApplication';
 import SWApplicationThunk from './star-wars/SWApplicationThunk';
 import SWApplicationReducer from './star-wars/SWApplicationReducer';
 import UserSignup from './UserSignUp';
+import CounterReduxClass, { store } from './CounterReduxClass';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
     <>
+      <Provider store={store}>
+        <CounterReduxClass />
+      </Provider>
+      <hr />
       <UserSignup />
       <hr />
       <SWApplicationThunk />
