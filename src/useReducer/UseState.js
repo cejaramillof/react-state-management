@@ -40,21 +40,25 @@ const UseState = () => {
   */
 
   const toggleForgiveness = useCallback((id) => {
+
     setGrudges(grudges =>
       grudges.map(grudge => {
+        console.log(grudges);
         if (grudge.id !== id) return grudge;
         return { ...grudge, forgiven: !grudge.forgiven };
       })
     );
-    /*
-    this dont works, because grudges in each iteraction will be the first initial state
-    setGrudges(
-      grudges.map(grudge => {
-        if (grudge.id !== id) return grudge;
-        return { ...grudge, forgiven: !grudge.forgiven };
-      })
-    );
-    */
+
+    // this dont works, because grudges in each iteraction (toggle) grudges will be the first initial state, unless you add druges, like a dependencie of useCallback
+    // setGrudges(
+    //   grudges.map(grudge => {
+    //     console.log(grudges);
+    //     if (grudge.id !== id) return grudge;
+    //     return { ...grudge, forgiven: !grudge.forgiven };
+    //   })
+    // );
+
+  //}, [setGrudges, grudges]);
   }, [setGrudges]);
 
   return (
