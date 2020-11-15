@@ -74,7 +74,7 @@ const SWApplicationThunk = () => {
   return (
     <div className="Application">
       <header>
-        <h1>Star Wars Characters</h1>
+        <h1>Star Wars Characters Thunk</h1>
       </header>
       <main>
         <section className="sidebar">
