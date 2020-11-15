@@ -9,8 +9,8 @@ import CounterClass from './CounterClass';
 import CounterFunction from './CounterFunction';
 import UseReducer from './useReducer/UseReducer';
 import UseState from './useReducer/UseState';
-import UseContext from './useReducer/UseContext';
-import { GrudgeProvider } from './useReducer/GrudgeContext';
+import UseContext from './useReducerContext/UseContext';
+import { GrudgeProvider } from './useReducerContext/GrudgeContext';
 import SWApplicationThunk from './star-wars/SWApplicationThunk';
 import SWApplicationReducer from './star-wars/SWApplicationReducer';
 import CounterReduxClass, { store as CounterStore } from './CounterReduxClass';
@@ -28,14 +28,15 @@ const KanbananzaApplication = lazy(() => import('./kanbananza/components/Applica
 const routes = [
   { route: 'counter-class', name: 'counter class' },
   { route: 'counter-function', name: 'counter function' },
-  { route: 'usereducer', name: 'usereducer' },
+  { route: 'counter-redux', name: 'counter redux' },
   { route: 'usestate', name: 'usestate' },
+  { route: 'usereducer', name: 'usereducer' },
+  { route: 'grudge-usecontext', name: 'grudge usecontext' },
   { route: 'user-signup', name: 'user signup' },
   { route: 'swapp', name: 'swapp' },
   { route: 'swapp-thunk', name: 'swapp thunk' },
   { route: 'swapp-reducer', name: 'swapp reducer' },
-  { route: 'counter-redux', name: 'counter redux' },
-  { route: 'grudge-usecontext', name: 'grudge usecontext' },
+
   { route: 'tweet-stream', name: 'tweet stream' },
   { route: 'auto-complete', name: 'auto complete starwars' },
   { route: 'kanbananza-board', name: 'kanbananza board' },
