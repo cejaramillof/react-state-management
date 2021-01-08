@@ -20,10 +20,10 @@ class CreateList extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { onCreateList } = this.props;
+    const { createList } = this.props;
 
-    if (onCreateList) {
-      onCreateList(this.state);
+    if (createList) {
+      createList(this.state);
     }
 
     this.setState({ title: '' });

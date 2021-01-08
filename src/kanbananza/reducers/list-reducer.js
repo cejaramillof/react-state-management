@@ -4,19 +4,19 @@ import { addIdToChildren, addEntity, removeIdFromChildren, removeEntity } from '
 import { LIST_CREATE, LIST_DELETE } from '../actions/list-actions';
 import { CARD_MOVE, CARD_CREATE, CARD_DELETE } from '../actions/card-actions';
 
-// set(chainOfProperties, whatYouWantToReplace, TheObject)
+
 
 // lists too be called state
 const listsReducer = (lists = defaultLists, action) => {
   console.log(lists, action);
   if (action.type === CARD_CREATE) {
     const { cardId, listId } = action.payload;
-    const entities = { ...lists.entities }
-
-    const cards = lists.entities[listId].cards.concat(cardId);
-
     return addIdToChildren(lists, listId, 'cards', cardId);
 
+    const entities = { ...lists.entities }
+    const cards = lists.entities[listId].cards.concat(cardId);
+
+    // set(chainOfProperties, whatYouWantToReplace, TheObject)
     return set(['entities', listId, 'cards'], cards, lists);
 
     entities[listId] = {
